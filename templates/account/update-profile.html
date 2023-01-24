@@ -1,0 +1,168 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Update Profile
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-4 mb-5">
+    <h1 class="places-header text-center mt-5">Profile Information</h1>
+    {% if user.user_profile.bio|length > 1 %}
+    <p class="text-center">Edit your profile by completing the form fields below.</p>
+    {% else %}
+    <p class="text-center">Finish setting up your profile by completing the form fields below.</p>
+    {% endif %}
+    <hr class="my-4">
+    <div class="p-4 border-lg rounded-4 shadow">
+        <form method="post" action="{% url 'account:user_update_profile' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row mb-4 mt-3">
+                <div class="col col-md">
+                    <div class="d-flex justify-content-center">
+                        {% if user.user_profile.profile_img.url %}
+                        <img class="img rounded-circle" src="{{ user.user_profile.profile_img.url }}" alt="Profile image" style="width: 200px; height: 200px;"> 
+                        {% else %}
+                        <img class="img rounded-circle" src="{% static 'profile/default-user-image.png' %}" alt="Profile image" style="width: 200px; height: 200px;">
+                        {% endif %}
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="form-group mt-4 mb-4 ms-5">
+                            <label for="profile_img">Upload image: </label>
+                            <input name="profile_img" type="file" class="form-control-file">
+                        </div>
+                    </div>
+                    {% if form.profile_img.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.profile_img.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>  
+
+            <div class="row mb-4 mt-4">
+                <div class="col-12 col-md">
+                    <div class="form-group">
+                        <label for="location">{{ form.location.label }}</label>
+                        <input name="location" type="text" class="form-control" value={{ user.user_profile.location }}>
+                    </div>
+                    {% if form.location.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.location.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-12 mt-3 col-md mt-md-0">
+                    <div class="form-group">
+                        <label for="gender">{{ form.gender.label }}</label>
+                        <select name="gender" class="form-select">
+                            {% if user.user_profile.gender == 'woman' %}
+                            <option name="gender" value="woman" selected>Woman</option>
+                            {% else %}
+                            <option name="gender" value="woman">Woman</option>
+                            {% endif %}
+
+                            {% if user.user_profile.gender == 'man' %}
+                            <option name="gender" value="man" selected>Man</option>
+                            {% else %}
+                            <option name="gender" value="man">Man</option>
+                            {% endif %}
+
+                            {% if user.user_profile.gender == 'traveler' %}
+                            <option name="gender" value="traveler" selected>Traveler</option>
+                            {% else %}
+                            <option name="gender" value="traveler">Traveler</option>
+                            {% endif %}
+
+                            {% if user.user_profile.gender == 'transgender woman' %}
+                            <option name="gender" value="transgender woman" selected>Transgender woman</option>
+                            {% else %}
+                            <option name="gender" value="transgender woman">Transgender woman</option>
+                            {% endif %}
+
+                            {% if user.user_profile.gender == 'transgender man' %}
+                            <option name="gender" value="transgender man" selected>Transgender man</option>
+                            {% else %}
+                            <option name="gender" value="transgender man">Transgender man</option>
+                            {% endif %}
+
+                            {% if user.user_profile.gender == 'non-binary' %}
+                            <option name="gender" value="non-binary" selected>Non-binary</option>
+                            {% else %}
+                            <option name="gender" value="non-binary">Non-binary</option>
+                            {% endif %}
+
+                            {% if user.user_profile.gender == 'agender' %}
+                            <option name="gender" value="agender" selected>Agender</option>
+                            {% else %}
+                            <option name="gender" value="agender">Agender</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 mt-3 col-md mt-md-0">
+                    <div class="form-group">
+                        <label for="age">{{ form.age.label }}</label>
+                        <input name="age" type="text" class="form-control" value="{{ user.user_profile.age }}">
+                    </div>
+                    {% if form.age.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.age.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="row mb-4 mt-4">
+                <div class="col-12 col-md">
+                    <div class="form-group">
+                        <label for="countries_visited">{{ form.countries_visited.label }}</label>
+                        <select name="countries_visited" multiple class="form-select" size="12" aria-label="multiple country select">
+                            <!-- if there are countries selected - previous update -->
+                            {% if countries_visited %}
+                            {% for country in countries %}
+                                {% if country.code in countries_visited %}
+                                <option value="{{ country.code }}" selected>{{ country.name }}</option>
+                                {% else %}
+                                <option value="{{ country.code }}">{{ country.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            <!-- if there are no countries selected - no previous update -->
+                            {% else %}
+                            {% for country in countries %}
+                            <option value="{{ country.code }}">{{ country.name }}</option>
+                            {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    {% if form.countries_visited.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.countries_visited.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-12 mt-3 col-md mt-md-0">
+                    <div class="form-group">
+                        <label for="bio">About You</label>
+                        <textarea name="bio" class="form-control" rows="3">{{ user.user_profile.bio }}</textarea>
+                    </div>
+                    {% if form.bio.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.bio.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <input id="form-submit" type="submit" class="btn btn-dk-hp ps-5 pe-5 mt-4 ms-lg-4" value="Submit">
+            </div>   
+        </form>
+    </div>
+</div>
+
+{% endblock %}

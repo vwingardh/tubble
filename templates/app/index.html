@@ -1,0 +1,270 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Tubble
+{% endblock %}
+
+
+{% block content%}
+<!-- Banner -->
+<div class="banner-gradient">
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-12 col-md-11 col-lg-7 mx-auto">
+                <img src="{% static 'app/tubble-collage.png' %}" class="d-block mx-lg-auto img-fluid" alt="Tubble collage" 
+                width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-5">
+                <h1 class="display-5 fw-bold lh-1 mb-3" style="color: #FFF;">Tubble makes it fun and easy to create a digital bucket list</h1>
+                <p class="lead">Places you want to go and places you have been - all in one place.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a href="{% url 'account:user_registration' %}">
+                    <button type="button" class="btn btn-dk-hp btn-lg px-4 me-md-2">Sign up - it's free!</button>
+                </a>
+            </div>
+                <div class="mt-4 preview">
+                    <a href="{% url 'app:preview' %}">
+                        Watch video
+                    </a> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-play-circle ms-1" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features -->
+<div class="gradient-background">
+    <div class="container cont-10 px-4 py-5 mt-lg-5 mb-10">
+        <div class="">
+            Tubble 101
+        </div>
+        <div class="pb-2 features-title">
+            Document your travel
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="mb-1">
+                    Simple, flexible, and powerful. Tubble utilizes destinations, making it easy
+                    to create and retrieve information about a bucket list city. 
+                    Destinations give a clear view of where you want to go and where you have been. 
+                </div>
+            </div>
+        </div>
+        <div class="border-bottom mt-3"></div>
+
+        <div class="row mt-1 row-cols-1 row-cols-md-2 justify-content-center align-items-md-center g-5 py-3">
+            <div class="d-flex flex-column align-items-start gap-2 mt-0">
+                <div class="features-intro">Where should we go next? Tubble it!</div>
+                <p class="text-muted pe-md-2 pe-lg-3">
+                    Simply create a destination to represent the city on your bucket list,
+                    filter destinations, add notes, and when completed, change the status of the destination to Visited.
+                </p>
+                <a href="{% url 'account:user_registration' %}" class="btn btn-dk-hp px-4 btn-lg">Get started</a>
+            </div>
+            <div class="row row-cols-2 mt-5 md-mt-0 g-4 bg-light rounded-4 shadow py-2">
+                <div class="d-flex flex-column gap-2">
+                    <h4 class="fw-semibold mb-0">Create</h4>
+                    <p class="text-muted">
+                        Store relevant information about a city such as flight time, activities, and notes.
+                    </p>
+                </div>
+
+                <div class="d-flex flex-column gap-2">
+                    <h4 class="fw-semibold mb-0">List</h4>
+                    <p class="text-muted">
+                        Conveniently see all of your bucket list destinations in one place.
+                    </p>
+                </div>
+
+                <div class="d-flex flex-column gap-2">
+                    <h4 class="fw-semibold mb-0">Tubble It</h4>
+                    <p class="text-muted">
+                        Not sure where to go next? Tubble gives you suggestions based on your current destinations.
+                    </p>
+                </div>
+
+                <div class="d-flex flex-column gap-2">
+                    <h4 class="fw-semibold mb-0">Visited</h4>
+                    <p class="text-muted">
+                        Upon visiting a city, simply change the status of the destination to Visited.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Destination -->
+        <div class="row mt-10">
+            <div class="col-12 col-md mt-15">
+                <div class="d-flex justify-content-start bg-white border-lg p-2 px-3 ms-5 rounded-4 shadow-sm">
+                    Conveniently set an image for your destination.
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12 col-md">
+                        <div class="bg-white border-lg p-2 px-3 me-5 rounded-4 shadow-sm">
+                            Destinations can be filtered by type of adventure, flight length, and climate.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col mt-5 destination-card">
+                <div class="card shadow-sm mx-auto border-lg rounded-4" style="width: 16.05rem;">
+                    <img class="card-img-top rounded-top-4" src="{% static 'app/sydney.png' %}" alt="Card image" style="height: 15rem; width: 16rem;">
+                    <div class="card-body py-1 mt-1">
+                        <div class="destination-card-title">Sydney, Australia</div> 
+                        <div class="row py-2">
+                            <div class="card-text col-12 mb-1 text-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" color="#FFF" class="bi bi-binoculars me-2 bg-db rounded-3 p-1" viewBox="0 0 16 16">
+                                    <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
+                                </svg> 
+                                <div class="d-inline">City attractions</div>
+                            </div>
+                            <div class="card-text col-12 mb-1 text-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" color="#FFF" class="bi bi-airplane me-2 bg-db rounded-3 p-1" viewBox="0 0 16 16">
+                                    <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z"/>
+                                </svg> 
+                                Very long
+                            </div>
+                            <div class="card-text col-12 mb-1 text-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" color="#FFF" class="bi bi-sun me-2 bg-db rounded-3 p-1" viewBox="0 0 16 16">
+                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                                </svg> 
+                                Subtropical
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md mt-13">
+                <div class="d-flex justify-content-center bg-white border-lg p-2 px-3 me-5 rounded-4 shadow-sm">
+                    Destinations store activities you would like to do in that city.
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12 col-md">
+                        <div class="bg-white border-lg p-2 px-3 ms-5 rounded-4 shadow-sm">
+                            Notes can be added to destinations to keep track of important details.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Destinations by Users -->
+<div class="container cont-10 tubbler-background border-lg shadow rounded-4 p-5 mb-10">
+    <div class="pb-2 ms-4 display-6 fw-normal">
+        Where are Tubblers going?
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 mb-3">
+            <div class="mb-1 ms-4">
+                Be inspired by the most popular destinations created by fellow Tubble users. 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for destination in destinations %}
+        <div class="col col-3 mt-4 p-2 shadow-sm border bg-white mx-auto card-hover rounded-4" style="width: 14rem;">                
+            <div class="ms-2">
+                <i class="bi bi-geo-alt" style="font-size: 22px; color: #FD8A8A;"></i>
+                {{ destination.city|title }}, 
+                {% if destination.country|length <= 3 %}
+                    <span class="text-uppercase">{{ destination.country }}</span></div>
+                {% else %}
+                    {{ destination.country|title }}</div>
+                {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container px-4">
+    <div class="pb-2 ms-4 features-title">
+        <div class="d-flex justify-content-center border-bottom">   
+            Featured Blog Posts
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col no-text-d">
+            <a href="{% url 'blog:blog_post' slug=blog_bora.slug %}">
+                <div class="card card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg"
+                    style="background-image: url('static/blog/bora.png'); height: 100%;">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                        <h3 class="pt-4 mt-3 mb-4 display-6 lh-1 fw-bold">Relax in Bora Bora</h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <li class="me-auto">
+                                <img src="{% static 'app/Tuble-logo.png' %}" alt="Tubble" width="32" height="32">
+                            </li>
+                            <li class="d-flex align-items-center me-3">
+                                <small>Bora Bora</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col no-text-d">
+            <a href="{% url 'blog:blog_post' slug=blog_rome.slug %}">
+                <div class="card card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg" 
+                    style="background-image: url('static/blog/rome.png'); height: 100%;">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                        <h3 class="pt-4 mt-3 mb-4 display-6 lh-1 fw-bold">Top Places to see in Rome</h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <li class="me-auto">
+                                <img src="{% static 'app/Tuble-logo.png' %}" alt="Tubble" width="32" height="32">
+                            </li>
+                            <li class="d-flex align-items-center me-3">
+                                <small>Rome</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col no-text-d">
+            <a href="{% url 'blog:blog_post' slug=blog_yellowstone.slug %}">
+                <div class="card card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg" 
+                    style="background-image: url('static/blog/yellow.png'); height: 100%;">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                        <h3 class="pt-3 mt-3 mb-4 display-6 lh-1 fw-bold">Explore Yellow Stone</h3>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <li class="me-auto">
+                                <img src="{% static 'app/Tuble-logo.png' %}" alt="Tubble" width="32" height="32">
+                            </li>
+                            <li class="d-flex align-items-center me-3">
+                                <small>Yellowstone</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Email signup -->
+<div class="position-relative banner-gradient overflow-hidden p-md-3 text-center email-signup">
+    <div class="col-md-5 p-lg-3 mx-auto my-4">
+        <div class="features-intro mb-3">Get started with Tubble today</div>
+        <div class="mb-3">Simply create an account - it's free!</div>
+        <div class="row">
+            <div class="col mt-2 d-flex justify-content-center">
+                <a href="{% url 'account:user_registration' %}">
+                    <button type="submit" class="btn btn-dk-hp ps-5 pe-5">Sign up</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

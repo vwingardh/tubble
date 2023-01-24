@@ -1,0 +1,235 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Create Destination
+{% endblock %}
+
+
+{% block content %}
+
+{% if messages %}
+<div class="container mt-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col col-auto">
+            {% for message in messages %}
+    
+            {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% else %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {% endif %}
+                <div class="alert-heading">
+                    {{ message }}
+                </div>
+                {% endfor %}
+
+                <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+{% endif %}
+
+{% if messages %}
+<div class="container mt-2 mb-5">
+    <h1 class="places-header text-center mt-5 mb-3">Create Destination</h1>
+    <hr class="my-4">
+    {% else %}
+    <div class="container mt-5 mb-5">
+        <h1 class="places-header text-center mt-5 mb-3">Create Destination</h1>
+        <hr class="my-4">
+    {% endif %}
+    <div class="p-4 border rounded-4 shadow">
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row mt-mb-5">
+                <div class="col-12 col-md">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input name="city" type="text" class="form-control">
+                    </div>
+                    {% if form.city.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.city.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-12 mt-3 col-md mt-md-0">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input name="country" type="text" class="form-control">
+                    </div>
+                    {% if form.country.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.country.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mt-3 col-md">
+                    <div class="form-group">
+                    <label for="adventure_type">Adventure Type</label>
+                        <select name="adventure_type" multiple class="form-control">
+                            <option name="adventure_type" value="Beach and ocean">Beach and ocean</option>
+                            <option name="adventure_type" value="City attractions">City attractions</option>
+                            <option name="adventure_type" value="Sport event">Sport event</option>
+                            <option name="adventure_type" value="Outdoor activities">Outdoor activities</option>
+                            <option name="adventure_type" value="Food and restaurants">Food and restaurants</option>
+                            <option name="adventure_type" value="Historical landmarks">Historical landmarks</option>
+                        </select>
+                    </div>
+                    {% if form.adventure_type.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.adventure_type.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-12 mt-3 col-md">
+                    <div class="form-group">
+                        <label for="climate">Climate</label>
+                        <select name="climate" multiple class="form-control">
+                            <option name="climate" value="Tropical">Tropical</option>
+                            <option name="climate" value="Subtropical">Subtropical</option>
+                            <option name="climate" value="Temperate">Temperate</option>
+                            <option name="climate" value="Desert">Desert</option>
+                            <option name="climate" value="Mediterranean">Mediterranean</option>
+                            <option name="climate" value="Highlands">Highlands</option>
+                            <option name="climate" value="Polar">Polar</option>
+                        </select>
+                    </div>
+                    {% if form.climate.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.climate.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-12 mt-3 col-md">
+                    <div class="form-group">
+                    <label for="flight">Flight Length</label>
+                        <select name="flight" multiple class="form-control">
+                            <option name="flight" value="Quick">Quick</option>
+                            <option name="flight" value="Short">Short</option>
+                            <option name="flight" value="Medium">Medium</option>
+                            <option name="flight" value="Long">Long</option>
+                            <option name="flight" value="Very long">Very long</option>
+                        </select>
+                    </div>
+                    {% if form.flight.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.flight.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="mt-3">Activities:<span class="text-muted"> (optional)</span></div>
+            <div class="row mt-2 mb-4">
+                <div class="col-12 col-md">
+                    <div class="form-group">
+                        <label for="activity1">Activity #1</label>
+                        <input name="activity1" type="text" class="form-control">
+                    </div>
+                    {% if form.activity1.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.activity1.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-12 mt-3 col-md mt-md-0">
+                    <div class="form-group">
+                        <label for="activity2">Activity #2</label>
+                        <input name="activity2" type="text" class="form-control">
+                    </div>
+                    {% if form.activity2.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.activity2.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-12 mt-3 col-md mt-md-0">
+                    <div class="form-group">
+                        <label for="activity3">Activity #3</label>
+                        <input name="activity3" type="text" class="form-control">
+                    </div>
+                    {% if form.activity3.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.activity3.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-12 mt-3 col-md mt-md-0">
+                    <div class="form-group">
+                        <label for="activity4">Activity #4</label>
+                        <input name="activity4" type="text" class="form-control">
+                    </div>
+                </div>
+                {% if form.activity4.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.activity4.errors|striptags }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="notes">Notes<span class="text-muted"> (optional)</span></label>
+                <textarea name="notes" class="form-control" rows="3"></textarea>
+            </div>
+            {% if form.notes.errors %}
+            <div class="alert alert-danger my-3 p-1" role="alert">
+                {{ form.notes.errors|striptags }}
+            </div>
+            {% endif %}
+            
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group mt-3">
+                        <label for="image">Upload an image: </label>
+                        <input name="image" type="file" class="form-control-file">
+                    </div>
+                    {% if form.image.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.image.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <div class="col-12 col-md-6">
+                    <div class="form-check mt-3 mb-4 ps-0">
+                        <div class="rounded-4 border border-danger p-3">
+                            <div class="mb-3">Been to this destination? Click the checkbox below.</div>
+                            <input name="has_user_visited" class="form-check-input ms-1" type="checkbox" value="True">
+                            <label class="form-check-label ms-2" for="has_user_visited">
+                                Set status of destination to Visited
+                            </label>
+                        </div>
+                    </div>
+                    {% if form.has_user_visited.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.has_user_visited.errors|striptags }}
+                    </div>
+                    {% endif %}
+
+                    <div class="d-flex justify-content-center">
+                        <input id="form-submit" type="submit" class="btn btn-dk-hp ps-5 pe-5 mt-4 ms-lg-4" value="Submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

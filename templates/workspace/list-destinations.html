@@ -1,0 +1,191 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Your Destinations
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+<div class="container mt-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col col-auto">
+            {% for message in messages %}
+    
+            {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% else %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {% endif %}
+                <div class="alert-heading">
+                    {{ message }}
+                </div>
+                {% endfor %}
+
+                <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+{% endif %}
+
+{% if messages %}
+<div class="container mt-2 footer-mb-75">
+    {% else %}
+    <div class="container mt-5 footer-mb-75">
+    {% endif %}
+    <h1 class="places-header text-center mt-2">Destinations on your bucket list</h1>
+    
+    <p class="text-center">
+        Select a destination to view more details, make
+        edits, and to change the status of the destination to Visited
+    </p>
+    <hr class="my-4">
+
+    <div class="row mb-3">
+        <div class="col-6 col-md-3 justify-content-center d-flex">
+            <ul class="nav">
+                <li class="nav-item dropdown">
+                    <div class="dropdown-toggle p-1 m-1 bg-light border-lg rounded-3 shadow-sm" 
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn">
+                        Adventure Type <i class="bi bi-chevron-down ms-2"></i>
+                        </button>
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for a in adventure_type %}
+                        <li class="selected">
+                            <a class="dropdown-item" 
+                                href="{% url 'workspace:filter_destinations' filter=a|slugify %}">{{ a|title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-6 col-md-3 justify-content-center d-flex">
+            <ul class="nav">
+                <li class="nav-item dropdown">
+                    <div class="dropdown-toggle p-1 m-1 bg-light border-lg rounded-3 shadow-sm" 
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn">
+                        Climate <i class="bi bi-chevron-down ms-2"></i>
+                        </button>
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for c in climate %}
+                        <li class="selected">
+                            <a class="dropdown-item" 
+                                href="{% url 'workspace:filter_destinations' filter=c|slugify %}">{{ c|title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-6 col-md-3 justify-content-center d-flex">
+            <ul class="nav">
+                <li class="nav-item dropdown">
+                    <div class="dropdown-toggle p-1 m-1 bg-light border-lg rounded-3 shadow-sm" 
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn">
+                        Flight Length <i class="bi bi-chevron-down ms-2"></i>
+                        </button>
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for f in flight %}
+                        <li class="selected">
+                            <a class="dropdown-item" 
+                                href="{% url 'workspace:filter_destinations' filter=f|slugify %}">{{ f|title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-6 col-md-3 d-flex justify-content-center">
+            <ul class="nav">
+                <li class="nav-item dropdown">
+                    <div class="dropdown-toggle p-1 m-1 bg-light border-lg rounded-3 shadow-sm" 
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn">
+                        Sort By <i class="bi bi-chevron-down ms-2"></i>
+                        </button>
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="selected">
+                            <a class="dropdown-item" 
+                                href="{% url 'workspace:sort_destinations' sort='ascending' %}">City A to Z
+                            </a>
+                        </li>
+                        <li class="selected">
+                            <a class="dropdown-item" 
+                                href="{% url 'workspace:sort_destinations' sort='descending' %}">City Z to A
+                            </a>
+                        </li>
+                        <li class="selected">
+                            <a class="dropdown-item" 
+                                href="{% url 'workspace:sort_destinations' sort='country-a' %}">Country A to Z
+                            </a>
+                        </li>
+                        <li class="selected">
+                            <a class="dropdown-item" 
+                                href="{% url 'workspace:sort_destinations' sort='country-d' %}">Country Z to A
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+        
+        {% for destination in destinations %}
+        <div class="col mt-4 destination-card">
+            <a href="{% url 'workspace:destination_detail_view' slug=destination.slug|slugify %}">
+                <div class="card shadow mx-auto card-hover rounded-4" style="width: 16.05rem;">
+                    <img class="card-img-top rounded-top-4" src="{{ destination.image.url }}" alt="Card image" style="height: 15rem; width: 16rem;">
+                    <div class="card-body py-1 mt-1">
+                        <div class="destination-card-title">{{ destination|title }}, 
+                            {% if destination.country|length <= 3 %}
+                                <span class="text-uppercase">{{ destination.country }}</span></div>
+                            {% else %}
+                                {{ destination.country|title|slice:"0:10" }}</div>
+                            {% endif %}
+
+                        <div class="row py-2">
+                            <div class="card-text col-12 mb-1 text-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" color="#FFF" class="bi bi-binoculars me-2 bg-db rounded-3 p-1" viewBox="0 0 16 16">
+                                    <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882V2.5zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5h-1zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V4zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5V3zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V14z"/>
+                                </svg> 
+                                <div class="d-inline">{{ destination.adventure_type|capfirst }}</div>
+                            </div>
+                            <div class="card-text col-12 mb-1 text-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" color="#FFF" class="bi bi-airplane me-2 bg-db rounded-3 p-1" viewBox="0 0 16 16">
+                                    <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z"/>
+                                </svg> 
+                                {{ destination.flight|capfirst }}
+                            </div>
+                            <div class="card-text col-12 mb-1 text-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" color="#FFF" class="bi bi-sun me-2 bg-db rounded-3 p-1" viewBox="0 0 16 16">
+                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                                </svg> 
+                                {{ destination.climate|capfirst }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

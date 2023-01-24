@@ -1,0 +1,147 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ user.first_name|capfirst }}'s Blog Activity
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="places-header text-center mt-5">{{ user.first_name|capfirst}}'s Blog Activity</h1>
+    <hr class="my-4">
+    <!-- Start of Favorites/Comments Totals -->
+    <div class="row mb-5 mt-5 d-flex justify-content-center">
+        <div class="col-auto border p-2 me-4 rounded-4 activity">
+            <div>
+                Total Favorites: 
+            </div>
+            <div class="d-flex justify-content-center">
+                <i class="bi bi-suit-heart me-2"></i><span>{{ favorites_total }}</span>
+            </div>
+        </div>
+        <div class="col-auto border p-2 ms-4 rounded-4 activity">
+            <div>
+                Total Comments: 
+            </div>
+            <div class="d-flex justify-content-center">
+                <i class="bi bi-chat-left me-2"></i></i><span>{{ comments_total }}</span>
+            </div>
+        </div> 
+    </div>
+    <!-- End of Favorites/Comments Totals -->
+
+    <!-- Start of Latest Activity -->
+    <div class="row mb-3 d-flex justify-content-center">
+        <div class="col-8">
+            <div>Your Latest Activity:</div>
+        </div>
+    </div>
+
+    <!-- Latest Activity - blog name and link -->
+    {% if latest_comments %}
+    {% for comment in latest_comments %}
+    <div class="row d-flex justify-content-center">
+        <div class="col-6 col-sm-7 col-md-5 col-lg-4">
+            <div class="text-muted">
+                <span class="text-muted">
+                    <a type="submit" href="{% url 'blog:blog_post' slug=comment.blog.slug %}">
+                        View Blog
+                    </a>
+                </span> 
+            </div>
+        </div>
+    </div> 
+
+    <!-- Latest Activity - user name and comment -->
+    <div class="row d-flex justify-content-center">
+        <div class="col-auto">
+            <div>
+            <img class="rounded-circle" style="width: 50px; height: 50px;" src="{{ comment.user.user_profile.profile_img.url }}">
+            </div>
+        </div>
+        
+        <div class="col-9 col-md-7 me-lg-5 col-lg-5 no-text-d">
+            <div class="p-2 bg-light border-lg rounded-3">
+                <div class="mb-2 text-muted">
+                    {{ comment.user }}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            {{ comment.comment }}
+                        </div>
+                    </div>
+                </div> 
+            </div>   
+
+            <!-- Latest Activity - updated or created date/time -->
+            <div class="row ps-2">
+                <div class="col">
+                    {% if comment.updated %}
+                    <div class="text-muted comment-date">
+                        {{ comment.updated|date:"M j, Y" }} at {{ comment.updated|date:"H:i" }}
+                    </div>
+                    {% else %}
+                    <div class="text-muted comment-date">
+                        {{ comment.created|date:"M j, Y" }} at {{ comment.created|date:"H:i" }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Latest Activity - Edit or delete comment -->
+                <div class="col-auto pe-2 px-sm-2 col-md-auto no-text-d">
+                    <span class="text-muted">
+                        <a type="submit" href="{% url 'blog:update_blog_comment' slug=comment.blog.slug %}">
+                            Edit
+                        </a>
+                    </span>
+                </div>
+                <div class="col-auto px-0 px-sm-2 mb-4 col-md-auto no-text-d">
+                    <span class="text-muted ms-1">
+                        <a type="submit" href="{% url 'blog:delete_blog_comment' slug=comment.blog.slug %}">
+                            Delete
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest Activity - No activity -->
+    {% endfor %}
+    {% else %}
+    <div class="d-flex justify-content-center">
+        <div class="text-muted">
+            You have no recent activity.
+        </div>
+    </div>
+    {% endif %}
+    <!-- End of Latest Activity -->
+
+    <!-- Start of all favorites/comments -->
+    <div class="row mb-5 mt-5 text-center d-flex justify-content-center">
+        <div class="col-5 col-md-4 col-lg-3 mx-2 p-2 rounded-4 bg-light border-lg shadow-sm">
+            <a href="{% url 'blog:all_user_favorites' %}">
+                <button type="button" class="btn">
+                    View all Favorites 
+                </button>
+            </a>
+        </div>
+        <div class="col-5 col-md-4 col-lg-3 mx-2 p-2 rounded-4 bg-light border-lg shadow-sm">
+            <a href="{% url 'blog:all_user_comments' %}">
+                <button type="button" class="btn">
+                    View all Comments
+                </button>
+            </a>
+        </div> 
+    </div>
+    {% if latest_comments %}
+    <div class="footer-mb-20"></div>
+    {% else %}
+    <div class="footer-mb-55"></div>
+    {% endif %}
+</div>
+<!-- End of all favorites/comments -->
+
+{% endblock %}

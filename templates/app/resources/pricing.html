@@ -1,0 +1,34 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Tubble Pricing
+{% endblock %}
+
+
+{% block content %}
+<div class="p-3 pb-md-4 mt-5 ms-5 me-5 text-center">
+    <h1 class="display-4 fw-normal">Pricing</h1>
+    <p class="fs-5 text-muted">
+        Tubble makes it fun and easy to create a digital bucket list. Tubble consists of 
+        destinations, each destination contains information such as city, country, type of adventure, activities and more.
+        Tubble is free to use for everyone!
+    </p>
+</div>  
+<div class="container mt-4 d-flex justify-content-center footer-mb-30">
+    <div class="card mb-4 rounded-4 shadow-sm text-center">
+        <div class="card-header py-3">
+        <h4 class="my-0 fw-normal">Free</h4>
+        </div>
+        <div class="card-body">
+        <h1 class="card-title mt-3">$0<small class="text-muted fw-light">/mo</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+            <li>Free for individuals</li>
+            <li>Email support</li>
+            <li>Help center access</li>
+        </ul>
+        <button href="{% url 'account:user_registration' %}" type="button" class="btn btn-dk-hp btn-lg mt-4 ps-5 pe-5">Sign up for free</button>
+    </div>
+</div>
+
+{% endblock %}

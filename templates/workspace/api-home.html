@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Developers
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 footer-mb-30">
+    <h1 class="places-header text-center mt-2">Getting Started with APIs</h1>
+    
+    <p class="text-center">
+        This document describes the resources that make up the official Tubble
+        JSON API. If you have any problems or requests, please <a style="color: #31356E;" href="{% url 'app:contact' %}">contact our API team</a>.
+    </p>
+    <hr class="my-4">
+
+    <div class="row mt-5 mb-5">
+        <div class="wk-title mb-4">API calls to retrieve information about user created destinations</div>
+        <div class="mb-2">
+            Location
+        </div>
+        <div class="">
+            The API is available at <div class="d-inline bg-grey rounded-3 p-1">https://tubble.me/api/</div>. Responses are sent as JSON.
+        </div>
+    </div>
+        
+    <div class="row mb-5">
+        <div class="mb-1">API call for a list of destinations created by users</div>
+        <div class="col-auto bg-grey rounded-3 p-1 ms-2">https://tubble.me/api/destination-list/</div>
+    </div>
+    <div class="row mb-5">
+        <div class="mb-1">API call for the most created city</div>
+        <div class="col-auto bg-grey rounded-3 p-1 ms-2">https://tubble.me/api/destination-count/</div>
+    </div>
+    <div class="row">
+        <div class="mb-1">API call for a list of cities and chosen activities</div>
+        <div class="col-auto bg-grey rounded-3 p-1 ms-2">https://tubble.me/api/destination-activity/</div>
+    </div>
+</div>
+
+{% endblock %}

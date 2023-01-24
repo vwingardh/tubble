@@ -1,0 +1,517 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet');
+
+html, body, p, div{
+    letter-spacing: -0.02px;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    color: #1F1913;
+}
+
+h1 {
+    font-size: 40px;
+    color: #103944;
+}
+
+h2 {
+    font-size: 55px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #FFF;
+}
+
+.navbar-brand {
+    color: #31356E;
+}
+
+.navbar-toggler {
+    border-color: #1F1913;
+} 
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(31,25,19, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    top: 58px;
+    left: 0px;
+    padding: 10px;
+}
+
+.nav-item {
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.nav-item a {
+    color: #1F1913;
+}
+.nav-item a:hover {
+    text-decoration: underline;
+}
+
+/* Navbar Sign up button */
+.signup-nav {
+    background-color: #31356E;
+}
+.signup-nav a {
+    color: #FFF;
+}
+.signup-nav a:hover {
+    color: #FFF;
+}
+@media (max-width: 767.5px) {
+    .signup-nav a:hover {
+        color: #1F1913;
+    }
+}
+
+/* Styling for Log in and Sign up Mobile Navbar Non-authenticated */
+.log-in {
+    margin-left: auto;
+}
+
+.log-in li {
+    margin-left: .5rem;
+    background-color: #F8F9FA;
+    border-radius: .25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-right: .75rem;
+    border: 1px solid #EEEEEE;
+}
+@media (max-width: 768px) {
+    .log-in li {
+        margin-left: 0;
+        background-color: transparent;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+        margin-right: 0;
+        border: none;
+    }
+}
+
+.signup-nav {
+    background-color: #31356E;
+    border-radius: .25rem;
+}
+@media (max-width: 767.5px) {
+    .signup-nav {
+        background-color: transparent;
+        border-radius: 0;
+        color: #1F1913;
+    }
+}
+
+.signup-nav li {
+    margin-left: .25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+@media (max-width: 767.5px) {
+    .signup-nav li {
+        margin-left: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.signup-nav a {
+    color: #FFF;
+}
+@media (max-width: 767.5px) {
+    .signup-nav a {
+        color: #1F1913;
+    }
+}
+
+/* Styling for Log in and Account Mobile Navbar Authenticated */
+.log-out {
+    margin-left: auto;
+    border: 1px solid #EEEEEE;
+    border-radius: .25rem;
+    margin-right: .75rem;
+}
+@media (max-width: 768px) {
+    .log-out {
+        border: none;
+    }
+}
+
+.log-out li {
+    margin-left: .5rem;
+    border-radius: .25rem;
+    padding-left: .75rem;
+    padding-right: .75rem;
+    margin-right: .75rem;
+}
+@media (max-width: 768px) {
+    .log-out li {
+        margin-left: 0;
+        background-color: transparent;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+        margin-right: 0;
+        border: none;
+    }
+}
+
+/* Account dropdown */
+#account-dropdown {
+    top: 60px;
+    left: -105px;
+    padding: 8px;
+}
+
+.account-nav {
+    margin-left: auto;
+}
+
+.account-nav li {
+    margin-left: .25rem;
+    padding-left: .75rem;
+    padding-right: .75rem;
+}
+@media (max-width: 768px) {
+    .account-nav li {
+        margin-left: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.account-nav a {
+    color: #1F1913;
+}
+
+/* Main Gradient Banner */
+.banner-gradient {
+    background: center bottom -140px / 100% 24% no-repeat scroll padding-box border-box, linear-gradient(60deg, rgb(82, 67, 170), rgb(255, 143, 177)) 0% 0% / auto no-repeat scroll padding-box border-box rgb(82, 67, 170);
+    background-blend-mode: normal, normal;
+    background-size: 100%;
+    color: rgb(255, 255, 255);
+}
+
+.background-image h1 {
+    font-weight: 600;
+}
+
+.background-image > div > p,
+.background-image > div > a {
+    margin-left: -4%;
+}
+
+.preview a {
+    color: #FFF;
+    text-decoration: none;
+}
+.preview a:hover {
+    text-decoration: underline;
+}
+
+.features-title {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.features-intro {
+    font-size: 25px;
+}
+
+/* Blue Gradient Background */
+.gradient-background {
+    background: linear-gradient(0deg, rgb(230, 252, 255), rgb(255, 255, 255)) 0% 0% / auto repeat scroll padding-box border-box rgb(178, 212, 255);
+    background-blend-mode: normal;
+    height: 1400px;
+    margin-bottom: 7%;
+}
+@media (min-width: 374.5px) {
+    .gradient-background {
+        height: 2100px;
+        margin-bottom: 10%;
+    }
+}
+@media (min-width: 413.5px) {
+    .gradient-background {
+        height: 1980px;
+        margin-bottom: 10%;
+    }
+}
+@media (min-width: 575.5px) {
+    .gradient-background {
+        height: 1900px;
+        margin-bottom: 10%;
+    }
+}
+@media (min-width: 767.5px) {
+    .gradient-background {
+        height: 1420px;
+        margin-bottom: 10%;
+    }
+}
+@media (min-width: 991.5px) {
+    .gradient-background {
+        height: 1300px;
+        margin-bottom: 10%;
+    }
+}
+
+/* Tubbler background */
+.tubbler-background {
+    background-image: url(tubbler-banner.png);
+    background-blend-mode: normal;
+    height: 400px;
+    margin-bottom: 7%;
+}
+@media (min-width: 374.5px) {
+    .tubbler-background {
+        height: 700px;
+        margin-bottom: 10%;
+    }
+}
+@media (min-width: 575.5px) {
+    .tubbler-background {
+        height: 500px;
+        margin-bottom: 10%;
+    }
+}
+@media (min-width: 991.5px) {
+    .tubbler-background {
+        height: 400px;
+        margin-bottom: 10%;
+    }
+}
+
+/* Footer */
+.footer > div > div > ul > li {
+    padding-bottom: 6px;
+}
+
+.footer-bg {
+    color: #FFF;
+    background-color: #31356E;
+}
+
+/* Destination Cards */
+.destination-card a {
+    text-decoration: none;
+    color: #1F1913;
+}
+
+.destination-card h5 {
+    margin-bottom: 8%;
+}
+
+.destination-card-title {
+    margin-bottom: 4%;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.card-hover:hover {
+    transition-duration: 0.4s;
+    transform: scale(1.1);
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
+    z-index: 3;
+}
+
+/* Buttons */
+.btn-dk-hp {
+    background-color: #31356E;
+    color: #FFF;
+    border: none;
+}
+.btn-dk-hp:hover {
+    background-color: #CE7777;
+    transition-duration: 0.4s;
+    color: #FFF;
+}
+
+.btn-cr {
+    background-color: #31356E;
+    color: #FFF;
+}
+.btn-cr:hover {
+    color: #FFF;
+}
+
+/* Icons */
+.bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+.bi-fc {
+    color: #31356E;
+}
+
+/* Email signup */
+.email-signup {
+    background-color: #F3EBE3;
+    margin-top: 10%;
+    padding-top: 8%;
+    padding-bottom: 4%;
+}
+
+/* Fonts */
+.ft-12 {
+    font-size: 10px;
+}
+
+.cd-title {
+    font-size: 28px;
+}
+
+.font-blue {
+    color: #0d6efd;
+}
+
+.no-text-d a {
+    text-decoration: none;
+}
+
+.fs-7 {
+    font-size: 14px;
+}
+
+.fc-db {
+    color: #31356E;
+}
+
+/* Background colors */
+.bg-db {
+    background: #31356E;
+}
+
+.bg-grey {
+    background-color: #F1F1F1;
+}
+
+/* Border colors */
+.border-lg {
+    border: 1px solid #EEEEEE;
+}
+
+/* Workspace nav */
+.bc-trans a {
+    background-color: transparent;
+}
+
+.bc-trans a:hover {
+    text-decoration: none;
+    background-color: #31356E;
+    color: #FFF;
+    transition-duration: 0.4s;
+}
+
+.wk-title {
+    font-size: 22px;
+}
+
+.wk-al {
+    font-size: 18px;
+}
+
+/* destination-detail-view image */
+.dv-img {
+    width: 400px;
+    height: 400px;
+}
+@media (max-width: 575.5px) {
+    .dv-img {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+/* Resources styling */
+.fb-pt-5 {
+    border: 1px solid transparent;
+    padding-top: 5%;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-bottom: 10%;
+    border-radius: 35px;
+}
+
+.fb-pt-15 {
+    border: 1px solid transparent;
+    padding-top: 15%;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-bottom: 10%;
+    border-radius: 35px;
+}
+
+/* Container widths */
+.cont-10 {
+    width: 95%;
+}
+@media (min-width: 575.5px) {
+    .cont-10 {
+        width: 95%;
+    }
+}
+
+.cont-50 {
+    width: 60%;
+}
+@media (min-width: 374.5px) {
+    .cont-50 {
+        width: 95%;
+    }
+}
+@media (min-width: 767.5px) {
+    .cont-50 {
+        width: 80%;
+    }
+}
+
+/* Margins */
+.mt-10 {
+    margin-top: 10%;
+}
+
+.mt-13 {
+    margin-top: 13%;
+}
+
+.mt-15 {
+    margin-top: 15%;
+}
+
+.mb-10 {
+    margin-bottom: 10%;
+}
+
+/* Footer margins */
+.footer-mb-10 {
+    margin-bottom: 10%;
+}
+
+.footer-mb-20 {
+    margin-bottom: 20%;
+}
+
+.footer-mb-30 {
+    margin-bottom: 30%;
+}
+
+.footer-mb-55 {
+    margin-bottom: 55%;
+}
+
+.footer-mb-75 {
+    margin-bottom: 75%;
+}

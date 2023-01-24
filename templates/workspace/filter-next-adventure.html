@@ -1,0 +1,93 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Filter Next
+{% endblock %}
+
+
+{% block content %}
+
+{% if messages %}
+<div class="container mt-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col col-auto">
+            {% for message in messages %}
+    
+            {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% else %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {% endif %}
+                <div class="alert-heading">
+                    {{ message }}
+                </div>
+                {% endfor %}
+
+                <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+{% endif %}
+
+{% if messages %}
+<div class="container cont-10 mt-2 footer-mb-55">
+    {% else %}
+    <div class="container cont-10 mt-5 footer-mb-55">
+    {% endif %}
+
+    <h1 class="places-header text-center mt-2">Filter Next Adventure</h1>
+    <p class="text-center">Not sure where to go next? Select the criteria below to get suggestions based on your current destinations!</p>
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="p-4 border rounded-4 shadow">
+            <form method="POST" action"">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <div class="form-group">
+                            <label for="adventure">Type of Adventure</label>
+                            <select name="adventure" class="form-select mt-2">
+                            {% for i in adventure %}
+                            <option>{{ i }}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md mt-3 mt-md-0">
+                        <div class="form-group">
+                            <label for="climate">Type of Climate</label>
+                            <select name="climate" class="form-select mt-2">
+                            {% for i in climate %}
+                            <option>{{ i }}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md mt-3 mt-md-0">
+                        <div class="form-group">
+                            <label for="flight">Length of Flight</label>
+                            <select name="flight" class="form-select mt-2">
+                            {% for i in flight %}
+                            <option>{{ i }}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="d-flex justify-content-center">
+                            <input id="form-submit" type="submit" class="btn btn-dk-hp ps-5 pe-5 mt-4 ms-lg-4" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>        
+
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Contact Us
+{% endblock %}
+
+
+{% block content %}
+
+{% if messages %}
+<div class="container mt-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col col-auto">
+            {% for message in messages %}
+    
+            {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% else %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {% endif %}
+                <div class="alert-heading">
+                    {{ message }}
+                </div>
+                {% endfor %}
+
+                <button type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+{% endif %}
+
+{% if messages %}
+<div class="container mt-2 cont-50 footer-mb-20">
+    {% else %}
+    <div class="container mt-5 cont-50 footer-mb-20">
+    {% endif %}
+    <h1 class="places-header text-center">Get in Touch</h1>
+    <p class="text-center">Let's start a conversation, use the form below to send a message.</p>
+    <hr class="my-4">
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="shadow fb-pt-5">
+            <div class="row mb-5 d-flex justify-content-center align-items-center">
+                <div class="ms-4 ms-md-5 mb-3 mb-md-1">
+                    <img class="ms-md-2 mb-1 me-1" src="{% static 'app/tubble-logo.png' %}" style="width: 30px;">
+                    <span class="wk-al">Tubble</span>
+                </div>
+            </div>
+            <div class="row mt-3 px-5">
+                <div class="col-12 col-md">
+                    <label for="first_name">First name</label>
+                    <input type="text" class="form-control" name="first_name">
+                    
+                    {% if form.first_name.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.first_name.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-12 col-md">
+                    <label for="last_name">Last name</label>
+                    <input type="text" class="form-control" name="last_name">
+                    
+                    {% if form.last_name.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.last_name.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row mt-3 px-5">
+                <div class="col-12 col-md">
+                    <label for="email">Email</label>
+                    <input name="email" type="email" class="form-control">
+
+                    {% if form.email.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.email.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+                    
+            <div class="row mt-3 px-5">
+                <div class="col">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" name="message" rows="3"></textarea>
+
+                    {% if form.message.errors %}
+                    <div class="alert alert-danger my-3 p-1" role="alert">
+                        {{ form.message.errors|striptags }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <input id="form-submit" type="submit" class="btn btn-dk-hp ps-5 pe-5 mt-4 ms-lg-4" value="Submit">
+            </div>
+        </div>
+    </form>  
+</div>
+
+{% endblock %}

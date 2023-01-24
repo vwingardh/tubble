@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Tubble Preview
+{% endblock %}
+
+{% block content %}
+<div class="p-3 pb-md-4 ms-3 mt-5 me-3 text-center">
+    <h1 class="display-4 fw-normal">Video Preview</h1>
+    <p class="fs-5 text-muted">
+        Tubble makes it fun and easy to create a digital bucket list. 
+        Tubble consists of destinations, each destination contains information 
+        such as city, country, type of adventure, activities and more. Below is a 
+        short preview on creating a destination.
+    </p>
+</div>
+<div class="container mt-3 d-flex justify-content-center footer-mb-20">
+    <video width="500" height="500" controls="controls">
+        <source src="{% static 'app/tubble-preview.mp4' %}" type="video/mp4">
+    </video>
+</div>
+{% endblock %}
