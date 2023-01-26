@@ -40,7 +40,7 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
-    
+
 class BlogComment(models.Model):
     """
     BlogComment model for comments made on blog posts.

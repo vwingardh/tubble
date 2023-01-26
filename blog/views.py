@@ -14,13 +14,13 @@ def blog_home(request):
     featured = Blog.blog_published.get(featured=True)
     return render(request, 'blog/blog-home.html', {'blogs': blogs, 'featured': featured})
 
+
 def blog_post(request, slug):
     blog_post = Blog.blog_published.get(slug=slug)
     user_favorited = blog_post.favorite.filter(id=request.user.id).exists()
     favorites_total = blog_post.favorite.values().count()
     comments = BlogComment.objects.filter(blog=blog_post.id)
     comments_total = BlogComment.objects.filter(blog=blog_post.id).count()
-
     context = {
         'blog_post': blog_post,
         'comments': comments,
@@ -29,6 +29,7 @@ def blog_post(request, slug):
         'comments_total': comments_total,
     }
     return render(request, 'blog/blog-post.html', context)
+
 
 @login_required
 def blog_favorite(request, pk):
@@ -39,6 +40,7 @@ def blog_favorite(request, pk):
     else:
         blog.favorite.add(user.id)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
 
 @login_required
 def blog_comment(request, slug):
@@ -61,6 +63,7 @@ def blog_comment(request, slug):
         form = UserCommentForm()
     return render(request, 'blog/blog-post.html', {'form': form})
 
+
 @login_required
 def update_blog_comment(request, slug):
     blog = Blog.blog_published.get(slug=slug)
@@ -77,6 +80,7 @@ def update_blog_comment(request, slug):
         form = UserCommentForm()
     return render(request, 'blog/update-comment.html', {'form': form, 'blog': blog, 'comment': comment})
 
+
 @login_required
 def delete_blog_comment(request, slug):
     blog = Blog.blog_published.get(slug=slug)
@@ -84,6 +88,7 @@ def delete_blog_comment(request, slug):
     comment.delete()
     messages.success(request, "Your comment has been deleted.")
     return redirect('blog:blog_post', slug=blog.slug)
+
 
 @login_required
 def blog_activity(request):
@@ -97,15 +102,18 @@ def blog_activity(request):
     }
     return render(request, 'blog/blog-activity.html', context) 
 
+
 @login_required
 def all_user_favorites(request):
     favorites = Blog.objects.filter(favorite=request.user.id)
     return render(request, 'blog/all-user-favorites.html', {'favorites': favorites})
 
+
 @login_required
 def all_user_comments(request):
     comments = BlogComment.objects.filter(user=request.user.id)
     return render(request, 'blog/all-user-comments.html', {'comments': comments})
+
 
 @login_required
 def blog_comment_like(request, pk):

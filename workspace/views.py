@@ -22,8 +22,10 @@ def workspace_home(request):
     }
     return render(request, 'workspace/workspace-home.html', context)
 
+
 def api_home(request):
     return render(request, 'workspace/api-home.html')
+
 
 @login_required
 def filter_next_adventure(request):
@@ -61,7 +63,8 @@ def filter_next_adventure(request):
         'form': form
     }
     return render(request, 'workspace/filter-next-adventure.html', context)
-    
+
+
 @login_required
 def create_destination(request):
     if request.method == 'POST':
@@ -102,6 +105,7 @@ def create_destination(request):
         form = DestinationCreateForm()
     return render(request, 'workspace/create-destination.html', {'form': form})
 
+
 @login_required
 def list_destinations(request):
     destinations = Destination.destination_objects.filter(
@@ -113,12 +117,14 @@ def list_destinations(request):
         {'destinations': destinations}
     )
 
+
 @login_required
 def destination_detail_view(request, slug):
     destination = Destination.objects.get(
         Q(user=request.user.id) & Q(slug=slug)
     )
     return render(request, 'workspace/destination-detail-view.html', {'destination': destination})
+
 
 @login_required
 def update_destination(request, pk):
@@ -147,12 +153,14 @@ def update_destination(request, pk):
         {'form': form, 'destination': destination}
     )
 
+
 @login_required
 def delete_destination(request, pk):
     destination = Destination.objects.get(id=pk)
     destination.delete()
     messages.success(request, "Destination has been removed.")
     return redirect('workspace:list_destinations')
+
 
 @login_required
 def list_visited_destinations(request):
@@ -164,6 +172,7 @@ def list_visited_destinations(request):
         'workspace/list-visited-destinations.html', 
         {'destinations': destinations}
     )
+
 
 @login_required 
 def filter_destinations(request, filter):
@@ -212,6 +221,7 @@ def filter_destinations(request, filter):
     else:
         messages.error(request, 'An error occurred, please try again.')
         return render(request, 'workspace/list-destinations.html')
+
 
 @login_required
 def filter_visited_destinations(request, filter):
@@ -263,6 +273,7 @@ def filter_visited_destinations(request, filter):
         messages.error(request, 'An error occurred, please try again.')
         return render(request, 'workspace/list-visited-destinations.html')
 
+
 @login_required
 def sort_destinations(request, sort):
     if sort == 'ascending':
@@ -286,6 +297,7 @@ def sort_destinations(request, sort):
         'workspace/list-destinations.html', 
         {'destinations': destinations}
     )
+
 
 @login_required
 def sort_visited_destinations(request, sort):

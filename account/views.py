@@ -32,9 +32,7 @@ def user_registration(request):
             user.last_name = form.cleaned_data['last_name']
             user.password1 = form.cleaned_data['password1']
             user.password2 = form.cleaned_data['password2']
-
             same_password = RegisterUserForm.is_password_match(user.password1, user.password2)
-
             if same_password == True:
                 user.set_password(user.password1)
                 user.is_active = True
@@ -51,7 +49,6 @@ def user_update_profile(request):
     user = User.objects.get(username=request.user)
     user_profile = UserProfile.get_user_profile(user)
     countries_visited = UserProfile.get_country_list(user)
-    
     # POST updated form data
     if request.method == 'POST':
         if user_profile:
@@ -60,7 +57,6 @@ def user_update_profile(request):
         # POST initial form data on first login
         else:
             form = UserProfileForm(request.POST, request.FILES)
-        
         if form.is_valid():
             profile_form = form.save(commit=False)
             profile_form.profile_img = form.cleaned_data['profile_img']
@@ -74,7 +70,6 @@ def user_update_profile(request):
             return redirect('workspace:workspace_home')
     else:
         form = UserProfileForm()
-
     context = {
         'user': user, 
         'countries': countries, 
