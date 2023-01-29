@@ -65,6 +65,7 @@ def user_update_profile(request):
             profile_form.age = form.cleaned_data['age']
             profile_form.countries_visited = form.cleaned_data['countries_visited']
             profile_form.bio = form.cleaned_data['bio']
+            profile_form.user = user 
             profile_form.save()
             UserProfile.set_adventure_level(user)
             return redirect('workspace:workspace_home')
