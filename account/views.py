@@ -59,7 +59,8 @@ def user_update_profile(request):
             form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile_form = form.save(commit=False)
-            profile_form.profile_img = form.cleaned_data['profile_img']
+            if profile_form.profile_img != 'user_profile_images/default-user-image.png':
+                profile_form.profile_img = form.cleaned_data['profile_img']
             profile_form.location = form.cleaned_data['location']
             profile_form.gender = form.cleaned_data['gender']
             profile_form.age = form.cleaned_data['age']
