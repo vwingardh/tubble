@@ -1,6 +1,6 @@
 # Tubble Digital Bucket List Application
 
-A web application allowing users to create a digital bucket list. Tubble consists of destination cards, each card contains information about the destination such as city, country, type of adventure, activities and more. Users can change the status of the card to 'visited' once they have been to that destination. A filtering feature provides users with the option to narrow down where they should go next. Tubble also provides a blog feature where users can save and comment on blogs. 
+Tubble is a travel bucket list app that enables users to create, save, and track destinations. It offers features such as creating user accounts, the ability to save blog posts to favorites, write blog comments, a REST API, profile management, viewing other users' profiles, and destination filtering capabilities.
 
 Built with: 
 * Python
